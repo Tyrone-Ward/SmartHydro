@@ -2,7 +2,8 @@ import { StyleSheet, Text, View, useColorScheme } from 'react-native'
 import React from 'react'
 import { StatusBar } from 'expo-status-bar'
 import CustomDarkTheme from '../themes/CustomDarkTheme'
-import { DefaultTheme, NavigationContainer, useTheme } from '@react-navigation/native'
+import CustomLightTheme from '../themes/CustomLightTheme'
+import { NavigationContainer, useTheme } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { IconLayoutDashboard, IconDeviceHeartMonitor, IconCalendarEvent, IconChartBar } from 'tabler-icons-react-native'
@@ -75,7 +76,7 @@ const HomeStack = () => {
   const scheme = useColorScheme()
   console.log(scheme)
   return (
-    <NavigationContainer theme={scheme === 'dark' ? CustomDarkTheme : DefaultTheme}>
+    <NavigationContainer theme={scheme === 'dark' ? CustomDarkTheme : CustomLightTheme}>
       <StatusBar style={scheme === 'dark' ? 'light' : 'dark'} />
       <Stack.Navigator>
         <Stack.Screen name="Home" component={HomeTabs} options={{ headerShown: false }} />

@@ -2,13 +2,11 @@ import '../../env.json'
 
 export const getHydroData = async (arrKeys) => {
   ;[sensorName, resAmount] = [arrKeys.queryKey[1].sensorName, arrKeys.queryKey[1].resAmount]
-  // console.log('array keys:', resAmount)
   const data = JSON.stringify({
     collection: MONGODB_COLLECTION,
     database: 'UserData',
     dataSource: 'Cluster0',
     // filter: { name: 'humidity' },
-    // filter: { sensorID: 'DHT22_1' },
     filter: { name: sensorName },
     projection: { _id: 0, name: 1, timestamp: 1, value: 1 },
     limit: resAmount,
