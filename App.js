@@ -1,9 +1,18 @@
 import { StatusBar } from 'expo-status-bar'
 import { StyleSheet, Text, View } from 'react-native'
 import HomeStack from './src/navigation/HomeStack'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { staleTime: 1000 * 60 * 5 } }
+})
 
 export default function App() {
-  return <HomeStack />
+  return (
+    <QueryClientProvider client={queryClient}>
+      <HomeStack />
+    </QueryClientProvider>
+  )
 }
 
 const styles = StyleSheet.create({

@@ -1,9 +1,9 @@
-import '../../env.json'
+import * as env from '../../env.json'
 
 export const getHydroData = async (arrKeys) => {
   ;[sensorName, resAmount] = [arrKeys.queryKey[1].sensorName, arrKeys.queryKey[1].resAmount]
   const data = JSON.stringify({
-    collection: MONGODB_COLLECTION,
+    collection: env.MONGODB_COLLECTION,
     database: 'UserData',
     dataSource: 'Cluster0',
     // filter: { name: 'humidity' },
@@ -17,7 +17,7 @@ export const getHydroData = async (arrKeys) => {
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Request-Headers': '*',
-      'api-key': MONGODB_API_KEY
+      'api-key': env.MONGODB_API_KEY
     },
     body: data
   })
