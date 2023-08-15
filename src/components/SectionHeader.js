@@ -2,6 +2,7 @@ import { StyleSheet, Text, View, Pressable } from 'react-native'
 import React from 'react'
 import { useTheme } from '@react-navigation/native'
 import { useNavigation } from '@react-navigation/native'
+import { IconArrowRight } from 'tabler-icons-react-native'
 
 const SectionHeader = (props) => {
   const { colors } = useTheme()
@@ -19,7 +20,9 @@ const SectionHeader = (props) => {
           navigation.navigate(rightTextTargetLocation)
         }}
       >
-        <Text style={{ color: colors.onSurface }}>{rightText} →</Text>
+        <Text style={{ color: colors.onSurface }}>
+          {rightText} <IconArrowRight size={12} />
+        </Text>
       </Pressable>
     </View>
   )

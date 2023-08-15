@@ -8,8 +8,8 @@ import { getHydroData } from '../api/sensorData'
 const QuickStats = () => {
   const { colors } = useTheme()
 
-  const sensorDataQuery = useQuery({
-    queryKey: ['sensor', { sensorName: 'airtemp', resAmount: 1 }],
+  const airtempDataFetch = useQuery({
+    queryKey: ['airtemp', { sensorName: 'airtemp', resAmount: 1 }],
     queryFn: getHydroData,
     refetchInterval: 1000 * 60 * 2
   })
@@ -40,7 +40,7 @@ const QuickStats = () => {
         <View style={[styles.leftBox, { backgroundColor: colors.secondary }]}>
           <View style={{ flex: 1, justifyContent: 'space-around', alignItems: 'center' }}>
             <Text style={{ color: colors.onSecondary, fontSize: 18 }}>Air Temp</Text>
-            <Text style={{ color: colors.onSecondary, fontSize: 18 }}>{sensorDataQuery.isSuccess && sensorDataQuery.data.documents.map((d) => Math.round(d.value))}° F</Text>
+            <Text style={{ color: colors.onSecondary, fontSize: 18 }}>{airtempDataFetch.isSuccess && airtempDataFetch.data.documents.map((d) => Math.round(d.value))}° F</Text>
           </View>
         </View>
         <View style={[styles.middleBox, { backgroundColor: colors.secondary }]}>

@@ -15,6 +15,33 @@ import Stats from '../screens/Stats'
 const Stack = createNativeStackNavigator()
 const Tab = createBottomTabNavigator()
 
+const tabs = [
+  {
+    name: 'Dashboard',
+    component: Dashboard,
+    label: 'Dashboard',
+    iconName: IconLayoutDashboard
+  },
+  {
+    name: 'Devices',
+    component: Devices,
+    label: 'Devices',
+    iconName: IconDeviceHeartMonitor
+  },
+  {
+    name: 'Routines',
+    component: Routines,
+    label: 'Routines',
+    iconName: IconCalendarEvent
+  },
+  {
+    name: 'Stats',
+    component: Stats,
+    label: 'Stats',
+    iconName: IconChartBar
+  }
+]
+
 const HomeTabs = () => {
   const { colors } = useTheme()
   return (
@@ -23,51 +50,23 @@ const HomeTabs = () => {
         tabBarStyle: { backgroundColor: colors.background }
       }}
     >
-      <Tab.Screen
-        name="Dashboard"
-        component={Dashboard}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused, color }) => {
-            let iconColor = colors.onBackground
-            return <IconLayoutDashboard color={iconColor} />
-          }
-        }}
-      />
-      <Tab.Screen
-        name="Devices"
-        component={Devices}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            let iconColor = colors.onBackground
-            return <IconDeviceHeartMonitor color={iconColor} />
-          }
-        }}
-      />
-      <Tab.Screen
-        name="Routines"
-        component={Routines}
-        options={{
-          tabBarBadge: 3,
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            let iconColor = colors.onBackground
-            return <IconCalendarEvent color={iconColor} />
-          }
-        }}
-      />
-      <Tab.Screen
-        name="Stats"
-        component={Stats}
-        options={{
-          headerShown: false,
-          tabBarIcon: ({ focused }) => {
-            let iconColor = colors.onBackground
-            return <IconChartBar color={iconColor} />
-          }
-        }}
-      />
+      <Tab.Group screenOptions={{ headerShown: false }}>
+        {tabs.map(({ name, component, label, iconName }) => {
+          return (
+            <Tab.Screen
+              key={name}
+              name={name}
+              component={component}
+              options={{
+                tabBarIcon: ({ focused, color }) => {
+                  let iconColor = colors.onBackground
+                  return React.createElement(iconName, { color: colors.onSurface })
+                }
+              }}
+            />
+          )
+        })}
+      </Tab.Group>
     </Tab.Navigator>
   )
 }

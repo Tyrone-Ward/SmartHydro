@@ -1,4 +1,4 @@
-import * as env from '../../env.json'
+import env from '../../env.json'
 
 export const getHydroData = async (arrKeys) => {
   ;[sensorName, resAmount] = [arrKeys.queryKey[1].sensorName, arrKeys.queryKey[1].resAmount]
